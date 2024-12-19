@@ -412,6 +412,9 @@ message LoadBalancerSettings {
     // and outperforms ROUND_ROBIN in nearly all cases. Prefer to use
     // LEAST_REQUEST as a drop-in replacement for ROUND_ROBIN.
     LEAST_REQUEST = 5;
+
+    // Customized load balancing algorithm.
+    CUSTOMIZED = 6;
   };
 
   // Consistent Hash-based load balancing can be used to provide soft
@@ -457,7 +460,7 @@ message LoadBalancerSettings {
       // Path to set for the cookie.
       string path = 2;
       // Lifetime of the cookie. If specified, a cookie with the TTL will be
-      // generated if the cookie is not present. If the TTL is present and zero, 
+      // generated if the cookie is not present. If the TTL is present and zero,
       // the generated cookie will be a session cookie.
       // +protoc-gen-crd:duration-validation:none
       google.protobuf.Duration ttl = 3;
@@ -663,7 +666,7 @@ message ConnectionPoolSettings {
     bool use_client_protocol = 7;
 
     // The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
-    // Defaults to 2^31-1. 
+    // Defaults to 2^31-1.
     int32 max_concurrent_streams = 8;
   };
 
